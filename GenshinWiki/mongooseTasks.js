@@ -1,14 +1,14 @@
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://127.0.0.1:27017/test')
+var Mystic = require("./models/mystic").Mystic
 
-var schema = mongoose.Schema({name: String})
-schema.methods.khayaa = function(){
-    console.log(this.get("name") + " сказал khayaa")
-}
-
-var Mystic = mongoose.model('Mystic', schema);
-
-var person = new Mystic({ name: 'Heydzo' })
-person.save(function (err) {
-    person.khayaa()
+var mystic = new Mystic({
+    title: "Heydzo",
+    nick: "heydzo"
 })
+
+console.log(mystic)
+mystic.save(function(err, mystic, affected){
+console.log(arguments)    
+})
+
