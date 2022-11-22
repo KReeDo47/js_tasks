@@ -11,8 +11,8 @@ var database = client.db("GenshinWiki");
 database.dropDatabase()
 database = client.db("GenshinWiki");
 const mystic = database.collection("mystic");
-const result = await mystic.insertOne({name:"Heydzo"});
-console.log(`${result} documents were inserted`);
+const result = await mystic.insertMany(data);
+console.log(`${result.insertedCount} documents were inserted`);
 } finally {
 await client.close();
 }
