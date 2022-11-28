@@ -8,7 +8,15 @@ router.get('/', function(req, res, next) {
 
 /* Страница мистиков */
 router.get("/:nick", function(req, res, next) {
-  res.send(req.params.nick);
-}); 
+  Mystic.findOne({nick:req.params.nick}, function(err,mystic){
+    if(err) return next(err)
+    if(!mystic) return next(new Error("Нет такого мистика в этой игре"))
+    res.render('mystic', {
+        title: mystic.title,
+        picture: mystic.avatar,
+        desc: mystic.desc
+    })
+})
+}) 
 
 module.exports = router;
