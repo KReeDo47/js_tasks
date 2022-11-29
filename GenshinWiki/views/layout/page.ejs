@@ -14,16 +14,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/">Главная</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/mystics/Heydzo">Heydzo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/mystics/NinGuan">NinGuan</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/mystics/Reyzor">Reyzor</a>
-        </li>
-        </ul>
+        <% menu.forEach(function(mystic){ %>
+          <li class="nav-item">
+          <a class="nav-link" href="/mystics/<%=mystic.nick%>"><%=mystic.title%></a>
+          </li>
+          <% }) %>
+            
+        
         <ul class="navbar-nav navbar-right">
           <li>
             <a class="nav-link" href="/logreg">Войти</a>
