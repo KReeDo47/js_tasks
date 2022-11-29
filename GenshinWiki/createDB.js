@@ -10,8 +10,8 @@ await client.connect();
 var database = client.db("GenshinWiki");
 database.dropDatabase()
 database = client.db("GenshinWiki");
-const mystic = database.collection("mystic");
-const result = await mystic.insertMany(data);
+const mystics = database.collection("mystics");
+const result = await mystics.insertMany(data);
 console.log(`${result.insertedCount} documents were inserted`);
 } finally {
 await client.close();
