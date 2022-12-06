@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 var Mystic = require("../models/mystic").Mystic
 var async = require("async")
 
@@ -8,7 +8,7 @@ var async = require("async")
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('Новый маршрутизатор, для маршрутов, начинающихся с mystics');
+  res.send('Новый маршрутизатор, для маршрутов, начинающихся с mystics')
 });
 
 /* Страница мистиков */
@@ -18,7 +18,7 @@ router.get("/:nick", function(req, res, next) {
         Mystic.findOne({nick:req.params.nick}, callback)
     },
     function(callback){
-        Mystic.find({},callback)
+        Mystic.find({},{_id:0,title:1,nick:1},callback)
     }
 ],
   function(err,result){
@@ -35,4 +35,4 @@ router.get("/:nick", function(req, res, next) {
   })
 })
 
-module.exports = router;
+module.exports = router

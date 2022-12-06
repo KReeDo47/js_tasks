@@ -11,4 +11,3 @@ console.log(mystic)
 mystic.save(function(err, mystic, affected){
 console.log(mystic.title)    
 })
-
