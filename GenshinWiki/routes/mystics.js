@@ -1,6 +1,6 @@
-var express = require('express')
-var router = express.Router()
-var Mystic = require("../models/mystic").Mystic
+var express = require('express');
+var router = express.Router();
+var Mystic = require("../models/mystic").Mystic;
 var async = require("async")
 
 
