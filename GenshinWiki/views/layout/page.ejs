@@ -11,17 +11,24 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid" id="container">
           <ul class="navbar-nav">
-            <% menu.forEach(function(Mystic){ %>
+            <% if(typeof nav=='object' && nav){ nav.forEach(function(Mystic){ %>
               <li class="nav-item">
                 <a class="nav-link" href="/mystics/<%=Mystic.nick%>">
                   <%=Mystic.title%>
                 </a>
               </li>
-              <% }) %>
+              <% })} %>
           </ul>
         </div>
       </nav>
   
   <%- body %>
 </body>
+<% if(typeof nav == 'object' && nav){ nav.forEach(function(mystic){ %>
+  <li class="nav-item">
+  <a class="nav-link" href="/mystics/<%=mystic.nick%>"><%=mystic.title%></a>
+  </li>
+  <% })} %>
+  
+
 </html>

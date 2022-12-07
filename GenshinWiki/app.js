@@ -7,6 +7,7 @@ var mongoose = require('mongoose')
 mongoose.connect('mongodb://127.0.0.1:27017/GenshinWiki')
 var session = require("express-session")
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var mystics = require('./routes/mystics');
@@ -41,6 +42,7 @@ app.use(function(req,res,next){
 })
 
 
+app.use(require("./middleware/createMenu.js"))
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/mystics', mystics);

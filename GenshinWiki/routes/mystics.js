@@ -12,26 +12,15 @@ router.get('/', function(req, res, next) {
 });
 
 /* Страница мистиков */
-router.get("/:nick", function(req, res, next) {
-  async.parallel([
-    function(callback){
-        Mystic.findOne({nick:req.params.nick}, callback)
-    },
-    function(callback){
-        Mystic.find({},{_id:0,title:1,nick:1},callback)
-    }
-],
-  function(err,result){
-    if(err) return next(err)
-    var mystic = result[0]
-    var mystics = result[1] || []
-    if(!mystic) return next(new Error("Нет такого мистика в этой игре"))
-    res.render('mystic', {
-        title: mystic.title,
-        picture: mystic.avatar,
-        desc: mystic.desc,
-        menu: mystics
-    });
+router.get('/:nick', function(req, res, next) {
+  Mystic.findOne({nick:req.params.nick}, function(err,Mystic){ 
+      if(err) return next(err)
+      if(!Mystic) return next(new Error("Нет такого мистика в этой игре"))
+      res.render('Mystic', {
+          title: Mystic.title,
+          picture: Mystic.avatar,
+          desc: Mystic.desc
+      })
   })
 })
 
