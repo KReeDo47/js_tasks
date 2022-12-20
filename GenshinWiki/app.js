@@ -6,12 +6,13 @@ var logger = require('morgan');
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://127.0.0.1:27017/GenshinWiki')
 var session = require("express-session")
+var mystics = require('./routes/mystics');
 var Mystic = require("./models/mystic").Mystic
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var mystics = require('./routes/mystics');
+
 
 
 var app = express();
@@ -20,8 +21,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('ejs',require('ejs-locals'));
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var MongoStore = require('connect-mongo')(session); 
+var MongoStore = require('connect-mongo'); 
 app.use(session({
   secret: "GenshinWiki",
   cookie:{maxAge:60*1000},

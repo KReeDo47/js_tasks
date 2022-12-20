@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Mystic = require("../models/mystic").Mystic;
+var checkAuth = require("./../middleware/checkAuth.js")
 var async = require("async")
 
 
@@ -12,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* Страница мистиков */
-router.get('/:nick', function(req, res, next) {
+router.get('/:nick', checkAuth,function(req, res, next) {
   Mystic.findOne({nick:req.params.nick}, function(err,Mystic){ 
       if(err) return next(err)
       if(!Mystic) return next(new Error("Нет такого мистика в этой игре"))
@@ -24,4 +25,4 @@ router.get('/:nick', function(req, res, next) {
   })
 })
 
-module.exports = router
+module.exports = router;
