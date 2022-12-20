@@ -29,8 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var MongoStore = require('connect-mongo'); 
-const { Mystic } = require('./models/mystic');
+var MongoStore = require('connect-mongo')(session); 
 app.use(session({
   secret: "GenshinWiki",
   cookie:{maxAge:60*1000},
