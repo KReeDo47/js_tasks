@@ -6,6 +6,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://127.0.0.1:27017/GenshinWiki')
 var session = require("express-session")
+var Mystic = require("./models/mystic").Mystic
 
 
 var indexRouter = require('./routes/index');
@@ -29,6 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 var MongoStore = require('connect-mongo'); 
+const { Mystic } = require('./models/mystic');
 app.use(session({
   secret: "GenshinWiki",
   cookie:{maxAge:60*1000},
@@ -41,8 +43,18 @@ app.use(function(req,res,next){
   next()
 })
 
+app.use(function(req,res,next){
+  res.locals.nav = []
+  Mystic.find(null,{_id:0,title:1,nick:1},function(err,result){
+      if(err) throw err
+      res.locals.nav = result
+      next()
+  })
+})
+
 
 app.use(require("./middleware/createMenu.js"))
+app.use(require("./middleware/createUser.js"))
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/mystics', mystics);
