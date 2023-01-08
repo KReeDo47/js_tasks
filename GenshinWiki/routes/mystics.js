@@ -45,5 +45,5 @@ router.get('/:nick' ,function(req, res, next) {
 //      })
 // })
 // })
-
+// .
 module.exports = router;
