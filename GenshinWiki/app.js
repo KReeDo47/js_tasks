@@ -3,65 +3,78 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var mongoose = require('mongoose')
-mongoose.connect('mongodb://127.0.0.1:27017/GenshinWiki')
-var session = require("express-session")
-var mystics = require('./routes/mystics');
-var Mystic = require("./models/mystic").Mystic
+// var mongoose = require('mongoose');
+var mysql2 = require('mysql2/promise');
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session'); (session);
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-
+var mystics = require('./routes/mystics');
 
 var app = express();
 
+var options = {
+  host : '127.0.0.1',
+  port: '3306',
+  user : 'root',
+  password : 'Ali542434063004',
+  database: 'genshinwiki'
+};
+  var connection = mysql2.createPool(options)
+  var sessionStore = new MySQLStore(options, connection);
+  
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.engine('ejs',require('ejs-locals'));
-
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'bower_components')));
 
-var MongoStore = require('connect-mongo'); 
 app.use(session({
-  secret: "GenshinWiki",
-  cookie:{maxAge:60*1000},
+  secret: 'Mystics',
+  key: 'sid',
+  store: sessionStore,
   resave: true,
   saveUninitialized: true,
-  store: MongoStore.create({mongoUrl: 'mongodb://127.0.0.1:27017/GenshinWiki'})
-}))
-app.use(function(req,res,next){
-  req.session.counter = req.session.counter +1 || 1
+  cookie: { path: '/',
+    httpOnly: true,
+    maxAge: 60*10000
+  }
+  }));
+  
+
+// var MongoStore = require('connect-mongo'); (session);
+// app.use(session({
+//   secret: "Mystics",
+//   cookie: {maxAge:60*10000},
+//   resave: true,
+//   saveUninitialized: true,
+//   store: MongoStore.create({mongoUrl: 'mongodb://127.0.0.1:27017/genshinwiki'})
+// }))
+
+app.use(function(req, res, next){
+  req.session.counter = req.session.counter +1 || 1,
   next()
 })
 
-app.use(function(req,res,next){
-  res.locals.nav = []
-  Mystic.find(null,{_id:0,title:1,nick:1},function(err,result){
-      if(err) throw err
-      res.locals.nav = result
-      next()
-  })
-})
+app.use(require("./middleware/createMenu"))
+app.use(require("./middleware/createUser"))
 
 
-app.use(require("./middleware/createMenu.js"))
-app.use(require("./middleware/createUser.js"))
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/mystics', mystics);
+app.use('/mystic', mystics)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
-}); 
+});
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -71,11 +84,17 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error', {title: 'Упс...', menu: []});
+  res.render('error', {
+    title: 'Упс... Что-то пошло не так :(',
+    picture: '/images/error.png',
+    menu:[]
+  });
 });
+
+app.engine('ejs',require('ejs-locals'));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 module.exports = app;
 
-
-
-
+// mongoose.connect('mongodb://127.0.0.1:27017/genshinwiki')
