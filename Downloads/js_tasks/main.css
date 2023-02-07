@@ -1,0 +1,25 @@
+.body {
+    color: rgba(235, 235, 235, 0.64);
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;;
+  }
+  
+  .main {  
+    flex-direction: column;
+    width: 250px;
+    height: 250px;
+    background-color: aqua;
+    border-radius: 40px;
+    margin-left: 30px;
+  }
+  p {
+    color: black;
+    font-size: large;
+  }
+  div {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
