@@ -5,12 +5,13 @@
     "version": "0.2.0",
     "configurations": [
 
+
         
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open task4.html",
-            "file": "c:\\Users\\x240\\Downloads\\js_tasks\\scripts\\task4.html"
+            "name": "Open task5.html",
+            "file": "c:\\Users\\x240\\Downloads\\js_tasks\\scripts\\task5.html"
         }
     ]
 }
