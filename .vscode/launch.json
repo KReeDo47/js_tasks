@@ -4,11 +4,13 @@
     // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
+        
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open task2.html",
-            "file": "c:\\Users\\x240\\Downloads\\js_tasks\\scripts\\task2.html"
+            "name": "Open task4.html",
+            "file": "c:\\Users\\x240\\Downloads\\js_tasks\\scripts\\task4.html"
         }
     ]
 }
