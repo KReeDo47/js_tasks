@@ -16,3 +16,5 @@ num2 -= 18;
 num2 *= 10;
 num2 /= 15;
 alert(num2);
+
+
