@@ -7,8 +7,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open task73.html",
-            "file": "c:\\Users\\x240\\Downloads\\js_tasks\\scripts\\task73.html"
+            "name": "Open task81.html",
+            "file": "c:\\Users\\x240\\Downloads\\js_tasks\\scripts\\task81.html"
         }
     ]
 }
