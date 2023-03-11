@@ -8,8 +8,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open task141.html",
-            "file": "c:\\Users\\x240\\Downloads\\js_tasks\\scripts\\task141.html"
+            "name": "Open task144.html",
+            "file": "c:\\Users\\x240\\Downloads\\js_tasks\\scripts\\task144.html"
         }
     ]
 }
