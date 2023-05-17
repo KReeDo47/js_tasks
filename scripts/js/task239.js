@@ -1,0 +1,1 @@
+// Основы работы с DOM в JavaScript
