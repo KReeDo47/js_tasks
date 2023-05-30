@@ -1,0 +1,62 @@
+<DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Номер выбранного пункта выпадающего списка</title> 
+        
+        <script src="./js/task284.js"></script>
+    
+        <style>
+            div{
+                margin: 0 auto; 
+                width: 800px;
+                text-align: center;
+                font-size: 20px;
+                color:rgb(255, 206, 73);
+                background-color: rgb(182, 201, 148); 
+                border: 5px solid rgb(182, 201, 148);
+                border-radius: 20px;
+            }
+            h1:hover{
+                text-shadow: 0 1px 10px rgb(104, 84, 28);
+            }
+            p{
+                margin: 10px auto;
+                width: 200px;
+                text-decoration: underline;
+            }
+            p:hover{
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Номер выбранного пункта выпадающего списка</h1>
+            <p>by AliDzelyalov</p>
+        </div>
+
+        <input type="text" id="input" />
+      <select id="select">
+         <option value="1">Пункт 1</option>
+         <option value="2">Пункт 2</option>
+         <option value="3">Пункт 3</option>
+         <option value="4">Пункт 4</option>
+         <option value="5">Пункт 5</option>
+      </select>
+      <br />
+      <br />
+
+      <select id="weekday-select">
+         <option value="1">Понедельник</option>
+         <option value="2">Вторник</option>
+         <option value="3">Среда</option>
+         <option value="4">Четверг</option>
+         <option value="5">Пятница</option>
+         <option value="6">Суббота</option>
+         <option value="0">Воскресенье</option>
+      </select>
+    </body>
+    </html>
